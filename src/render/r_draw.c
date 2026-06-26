@@ -82,6 +82,9 @@ R_DrawShapeSquareToFramebuffer
 ( framebuffer_t* framebuffer,
   uint16_t       n )
 {
+    /**
+     * @TODO:
+     */
     return 0;
 }
 
@@ -92,6 +95,9 @@ int R_DrawShapeRectangleToFramebuffer
   uint16_t       b,
   uint16_t       h )
 {
+    /**
+     * @TODO:
+     */
     return 0;
 }
 
@@ -102,5 +108,8 @@ R_DrawShapeToFramebuffer
 ( framebuffer_t* framebuffer,
   shape_t        shape )
 {
+        /**
+     * @TODO:
+     */
     return 0;
 }

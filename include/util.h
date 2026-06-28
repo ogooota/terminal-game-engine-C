@@ -3,6 +3,13 @@
 
 #include <stdint.h>
 
-int U_GetTermSize (uint16_t* cols, uint16_t* rows); 
+
+
+int 
+U_GetTermSize
+( uint16_t* width,
+  uint16_t* height );
+
+
 
 #endif

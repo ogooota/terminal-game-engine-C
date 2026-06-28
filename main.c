@@ -1,36 +1,30 @@
 #include <stdio.h>
-#include <unistd.h>
 
-#include "r_shape.h"
-#include "r_framebuffer.h"
-#include "r_draw.h"
-#include "util.h"
+#include "g_vector.h"
+#include "g_shape.h"
+#include "m_areas.h"
+#include "m_perimeters.h"
 
+void MAIN_ShapeTests ()
+{
+    shape_t sq     = G_ShapeNewSquare (5);
+    shape_t rect   = G_ShapeNewRectangle (5., 10.);
+    shape_t tri    = G_ShapeNewTriangle ((vertex_t) {5., 5.}, (vertex_t) {5., 10.}, (vertex_t) {10., 7.});
+    shape_t circle = G_ShapeNewCircle ((vertex_t) {0., 0.}, 3.);
 
+    printf ("Square Area: %.2f\n", M_AreaSquare (sq));
+    printf ("Rectangle Area: %.2f\n", M_AreaRectangle(rect));
+    printf ("Triangle Area: %.2f\n", M_AreaTriangle (tri));
+    printf ("Circle Area: %.2f\n", M_AreaCircle (circle));
+    printf ("\n"); 
+    printf ("Square Perimeter: %.2f\n", M_PerimeterSquare (sq));
+    printf ("Rectangle Perimeter: %.2f\n", M_PerimeterRectangle(rect));
+    printf ("Triangle Perimeter: %.2f\n", M_PerimeterTriangle (tri));
+    printf ("Circle Perimeter: %.2f\n", M_PerimeterCircle (circle));
+}
 
 int main (void)
 {
-    framebuffer_t fb = {0};
-    R_FramebufferInit (&fb);
-    // vertex_t v = R_VertexNew (6, 7, '+');                  @OK
-    // R_DrawCharToFramebuffer (&fb, 5, 5, '-');              @OK
-    // R_DrawStringToFramebuffer (&fb, 5, 5, "Hello world!"); @OK
-    // R_DrawVertexToFramebuffer (&fb, v);                    @OK
-    // vector_t hor = R_VectorNew ( 6, 5, '-',
-    //                             15, 5, '-' );              @OK
-    // vector_t vert = R_VectorNew ( 5, 5, '|',
-    //                              5, 15, '|' );             @OK
-    // int horsize = R_DrawHorizontalVectorToFramebuffer (&fb, hor);
-    // int vertsize = R_DrawVerticalVectorToFramebuffer (&fb, vert);
-
-    R_FramebufferUpdate (&fb);
-    while (1)
-    {
-        write (1, "\x1b[H", 4);
-        write (1, fb.renderbuffer, (fb.cols*fb.rows));
-    }
-    // printf ("horsize: %d\n", horsize);
-    // printf ("vertsize: %d\n", vertsize);
-    R_FramebufferDestroy (&fb);
+    MAIN_ShapeTests ();
     return 0;
 }
